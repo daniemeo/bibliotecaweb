@@ -105,7 +105,7 @@
 						          <td>
 						           <a class="btn  btn-sm btn-outline-secondary" href="VisualizzaLibroServlet?idDaInviareComeParametro=${libro.id}"> Visualizza</a>
 									
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="prepareUpdateLibroServlet?idDaInviareExecuteUpdate=${libro.id}">Edit</a>
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateLibroServlet?idDaInviareExecuteUpdate=${libro.id}">Edit</a>
 									
 									
 									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteLibroServlet?idDaInviareComeParametro=${libro.id}">Delete</a>

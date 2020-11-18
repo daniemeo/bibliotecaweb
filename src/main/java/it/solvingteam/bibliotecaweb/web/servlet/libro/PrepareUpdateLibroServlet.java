@@ -1,4 +1,4 @@
-package it.solvingteam.bibliotecaweb.web.servlet.autore;
+package it.solvingteam.bibliotecaweb.web.servlet.libro;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.solvingteam.bibliotecaweb.model.autore.Autore;
+import it.solvingteam.bibliotecaweb.model.libro.Libro;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 
 /**
- * Servlet implementation class PrepareUpdateAutoreSerlvlet
+ * Servlet implementation class PrepareUpdateLibroServlet
  */
-@WebServlet("/PrepareUpdateAutoreSerlvlet")
-public class PrepareUpdateAutoreSerlvlet extends HttpServlet {
+@WebServlet("/PrepareUpdateLibroServlet")
+public class PrepareUpdateLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrepareUpdateAutoreSerlvlet() {
+    public PrepareUpdateLibroServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +29,23 @@ public class PrepareUpdateAutoreSerlvlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idAutore=request.getParameter("idDaInviareExecuteUpdate");
+		String idLibroInput = request.getParameter("idDaInviareExecuteUpdate");
 		try {
-			Autore autore = MyServiceFactory.getAutoreServiceInstance().get(Long.parseLong(idAutore));
-			if (autore == null) {
-				request.setAttribute("errorMessage", "Attenzione, l'id dell'utete che hai selezionato non risulta nella nostra lista ");
-				request.getRequestDispatcher("formCercaAutore.jsp");
+			Libro libro = MyServiceFactory.getLibroServiceInstance().get(Long.parseLong(idLibroInput));
+			if (libro == null) {
+				request.setAttribute("errorMessage", "Attenzione, l'id del libro che hai selezionato non risulta nella nostra lista ");
+				request.getRequestDispatcher("formCercaLibro.jsp");
 			}
-			request.setAttribute("autoreUpdate", autore);
+			request.setAttribute("listaAutori", MyServiceFactory.getAutoreServiceInstance().listAll());
+			request.setAttribute("libroUpdate", libro);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("updateAutore.jsp").forward(request, response);
+		request.getRequestDispatcher("updateLibro.jsp").forward(request, response);
 	}
 
 	/**

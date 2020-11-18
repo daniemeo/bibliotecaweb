@@ -92,9 +92,9 @@
 						           <td><c:out value="${autore.dataNascita}"></c:out></td>
 						           <td>
 						           <a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idDaInviareComeParametro=${autore.id}"> Visualizza</a>
-									<c:if test="${sessionScope.utente.ruolo=='Admin-Role' || sessionScope.utente.ruolo=='Classic-Role' }">
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="prepareUpdateAutoreServlet?idDaInviareExecuteUpdate=${autore.id}">Edit</a>
-									</c:if>
+									
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateAutoreSerlvlet?idDaInviareExecuteUpdate=${autore.id}">Edit</a>
+								
 									
 									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteAutoreServlet?idDaInviareComeParametro=${autore.id}">Delete</a>
 									
