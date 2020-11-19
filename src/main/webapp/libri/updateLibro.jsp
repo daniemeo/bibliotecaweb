@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<jsp:include page="./header.jsp" />
-	<title>Inserisci nuovo libro</title>
+	<jsp:include page="/header.jsp" />
+	<title>modifica libro</title>
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
-	<jsp:include page="./navbar.jsp" />
+	<jsp:include page="/navbar.jsp" />
 	
 	<main role="main" class="container">
 	
@@ -32,39 +32,38 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        <h5>Inserisci nuovo Libro</h5> 
+		        <h5>modifica l'elemento</h5> 
 		    </div>
 		    <div class='card-body'>
-
-					<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
-
-					<form method="post" action="ExecuteInsertLibroServlet" class= "needs-validation" novalidate>
+                    
+                     
 					
-						<div class="form-row">
-						    <div class="form-group col-md-6">
-								<label>Titolo <span class="text-danger">*</span></label>
-								<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo" required>
-								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire il titolo del libro!
-                                 </div>
+					
+					
+
+					<form method="post" action="libri/ExecuteUpdateLibroServlet" novalidate="novalidate">
+					<div class="form-row">
+					<input type="hidden" name="libroUpdate" id="libroUpdate" value="${requestScope.libroUpdate.id}" >
+						
+						
+							<div class="form-group col-md-6">
+								<label>Titolo <span class="text-danger"></span></label>
+								<input type="text" name="titolo" id="titolo" class="form-control" value="${requestScope.libroUpdate.titolo}" >
+							</div>
+							
+							
+							<div class="form-group col-md-6">
+								<label>Genere <span class="text-danger"></span></label>
+								<input type="text" name="genere"  id="genere" class="form-control" value="${requestScope.libroUpdate.genere}" >
 							</div>
 							
 							<div class="form-group col-md-6">
-								<label>Genere <span class="text-danger">*</span></label>
-								<input type="text" name="genere" id="genere" class="form-control" placeholder="Inserire il genere" required>
-								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire il genere del libro!
-                                 </div>
+								<label>Trama <span class="text-danger"></span></label>
+								<input type="text" name="trama"  id="trama" class="form-control" value="${requestScope.libroUpdate.trama}" >
 							</div>
-							
-							<div class="form-group col-md-6">
-								<label>Trama <span class="text-danger">*</span></label>
-								<input type="text" name="trama" id="trama" class="form-control" placeholder="Inserire la trama" required>
-								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire la trama del libro!!
-                                 </div>
-							</div>
-							<div class="form-group col-md-6">
+						
+						
+						<div class="form-group col-md-6">
 	                          <label>Autore</label>
 	                             <select id="listaAutori" name="autore_id" class="custom-select browser-default" >	
 				                   <option value="">- Seleziona Autori -</option>
@@ -73,29 +72,26 @@
 					               </c:forEach>
 				                 </select>
 	                          </div>
-						</div>
-						
-						
-							
+	                    </div>
+					 	
 					
-						
-                   
+					
 						
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-					</form>
+					 </form>	
+
 					
-					</div>
-			</div>
-				
-					 
-	
-	
+
+		    
+		    
+			<!-- end card-body -->			   
+		    </div>
 		
 	
 	
 	<!-- end container -->	
 	</main>
-	<jsp:include page="./footer.jsp" />
-
+	<jsp:include page="/footer.jsp" />
+	
 </body>
 </html>

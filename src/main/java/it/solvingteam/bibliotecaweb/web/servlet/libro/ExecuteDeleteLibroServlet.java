@@ -13,7 +13,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteDeleteLibroServlet
  */
-@WebServlet("/ExecuteDeleteLibroServlet")
+@WebServlet("/libri/ExecuteDeleteLibroServlet")
 public class ExecuteDeleteLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

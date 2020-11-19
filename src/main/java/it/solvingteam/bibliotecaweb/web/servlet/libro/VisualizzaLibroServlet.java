@@ -14,7 +14,7 @@ import it.solvingteam.bibliotecaweb.service.libro.LibroService;
 /**
  * Servlet implementation class VisualizzaLibroServlet
  */
-@WebServlet("/VisualizzaLibroServlet")
+@WebServlet("/libri/VisualizzaLibroServlet")
 public class VisualizzaLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

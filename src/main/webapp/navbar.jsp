@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/home.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       
       <li class="nav-item">
@@ -22,7 +22,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="home.jsp">Home</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/home.jsp">Home</a>
           <a class="dropdown-item" href="ListArticoliServlet">Risultati</a>
         </div>
       </li>

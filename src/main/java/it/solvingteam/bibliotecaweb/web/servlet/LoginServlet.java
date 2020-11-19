@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
       		try {
       			utente= utenteService.cercaPerUsernameEPassword(usernameDaPagina, passwordDaPagina);
       			if(utente != null) {
+      				request.getSession().setAttribute("utente",utente);
       				request.getRequestDispatcher("home.jsp").forward(request, response);
     			} else {request.getRequestDispatcher("index.jsp").forward(request, response);
       			}

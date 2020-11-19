@@ -82,7 +82,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 			throw new Exception("Problema valore in input");
 		} else {
 			TypedQuery<Utente> query = entityManager
-					.createQuery("select u from Utente u where u.username=?1 and u.password=?2", Utente.class)
+					.createQuery("select u from Utente u join fetch u.ruoli where u.username=?1 and u.password=?2", Utente.class)
 					.setParameter(1, username)
 					.setParameter(2, password);
 			return query.getResultStream().findFirst().orElse(null);

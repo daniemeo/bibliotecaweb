@@ -17,7 +17,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteCercaLibroServlet
  */
-@WebServlet("/ExecuteCercaLibroServlet")
+@WebServlet("/libri/ExecuteCercaLibroServlet")
 public class ExecuteCercaLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

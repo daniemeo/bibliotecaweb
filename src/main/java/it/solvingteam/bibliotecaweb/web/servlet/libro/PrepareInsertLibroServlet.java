@@ -12,7 +12,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class PrepareInsertLibroServlet
  */
-@WebServlet("/PrepareInsertLibroServlet")
+@WebServlet("/libri/PrepareInsertLibroServlet")
 public class PrepareInsertLibroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
