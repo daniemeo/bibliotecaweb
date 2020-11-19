@@ -3,6 +3,7 @@ package it.solvingteam.bibliotecaweb.model.utente;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -39,10 +40,23 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 		@Enumerated(EnumType.STRING)
 		private StatoUtente stato = StatoUtente.ATTIVO;
 
-		@ManyToMany
+		@ManyToMany(cascade = CascadeType.PERSIST)
 		@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 		private Set<Ruolo> ruoli = new HashSet<>(0);
 		
+		public Utente( String nome, String cognome, String username,String password, Set<Ruolo> ruoli) {
+			this.nome= nome;
+			this.cognome=cognome;
+			this.password= password;
+			this.username= username;
+		}
+		
+		public Utente(String nome, String cognome, String username, StatoUtente stato) {
+			this.nome= nome;
+			this.cognome = cognome;
+			this.username = username;
+			this.stato = stato;
+		}
 		public Utente(String nome, String cognome, String username, String password, StatoUtente stato) {
 			this.nome= nome;
 			this.cognome= cognome;

@@ -1,5 +1,7 @@
 package it.solvingteam.bibliotecaweb.service.ruolo;
 
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 
 import it.solvingteam.bibliotecaweb.dao.EntityManagerUtil;
@@ -28,6 +30,25 @@ public class RuoloServiceImpl implements RuoloService{
 			entityManager.close();
 		}
 	}
+	@Override
+	public Set<Ruolo>listAll() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			ruoloDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return ruoloDAO.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+	}
+	
 	@Override
 	public void setRuoloDAO(RuoloDAO ruoloDAO) {
 		this.ruoloDAO = ruoloDAO;

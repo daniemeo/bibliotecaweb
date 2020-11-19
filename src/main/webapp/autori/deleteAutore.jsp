@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <jsp:include page="./header.jsp" />
+    <jsp:include page="/header.jsp" />
      <title>controllo cancellazione</title>
-       <link href="./assets/css/global.css" rel="stylesheet">
+       <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
 </head>
 <body>
-  <jsp:include page="./navbar.jsp" />
+  <jsp:include page="/navbar.jsp" />
   <main role="main" class="container">
    <div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
 			 	Operazione fallita!
@@ -33,18 +33,18 @@
                          
 			    	</dl>
 				</div>	
-	<form method="post" action="ExecuteDeleteAutoreServlet" novalidate="novalidate">
+	<form method="post" action="${pageContext.request.contextPath}/autori/ExecuteDeleteAutoreServlet" novalidate="novalidate">
 				<input type="hidden" name="idDaInviareComeParametro" id="idDaInviareComeParametro" value= "${requestScope.delete.id}">
 					
   				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-  				<a href="${pageContext.request.contextPath}/PrepareCercaAutoreServlet"
+  				<a href="${pageContext.request.contextPath}/autori/PrepareCercaAutoreServlet"
 		         class='btn btn-outline-secondary' style='width:80px'>
 		            <i class='fa fa-chevron-left'></i> Back
 		        </a>
 	</form>	
     </div>
 </main>	
-<jsp:include page="./footer.jsp" />			
+<jsp:include page="/footer.jsp" />			
 </body>
 
 

@@ -72,7 +72,7 @@ public class ExecuteCercaLibroServlet extends HttpServlet {
 
 		request.setAttribute("listaLibri", MyServiceFactory.getLibroServiceInstance().findByLibro(libro));
 
-		request.getRequestDispatcher("formCercaLibro.jsp").forward(request, response);
+		request.getRequestDispatcher("resultCerca.jsp").forward(request, response);
 
 	}
 

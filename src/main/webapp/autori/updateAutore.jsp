@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<jsp:include page="./header.jsp" />
+	<jsp:include page="/header.jsp" />
 	<title>modifica autore</title>
 	
 	<!-- style per le pagine diverse dalla index -->
@@ -12,7 +12,7 @@
     
 </head>
 <body>
-	<jsp:include page="./navbar.jsp" />
+	<jsp:include page="/navbar.jsp" />
 	
 	<main role="main" class="container">
 	
@@ -41,7 +41,7 @@
 					
 					
 
-					<form method="post" action="ExecuteUpdateAutoreServlet" novalidate="novalidate">
+					<form method="post" action="${pageContext.request.contextPath}/autori/ExecuteUpdateAutoreServlet" novalidate="novalidate">
 					<div class="form-row">
 					<input type="hidden" name="autoreUpdate" id="autoreUpdate" value="${requestScope.autoreUpdate.id}" >
 						
@@ -79,7 +79,7 @@
 	
 	<!-- end container -->	
 	</main>
-	<jsp:include page="./footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 	
 </body>
 </html>

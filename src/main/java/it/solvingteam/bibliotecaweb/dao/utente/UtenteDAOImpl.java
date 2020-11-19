@@ -21,7 +21,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 	
 	@Override
 	public Set<Utente> list() throws Exception {
-		return entityManager.createQuery("from Utente",Utente.class).getResultList().stream().collect(Collectors.toSet());
+		return entityManager.createQuery("from Utente u join fetch u.ruoli ",Utente.class).getResultList().stream().collect(Collectors.toSet());
 	}
 
 	@Override
@@ -88,7 +88,38 @@ public class UtenteDAOImpl implements UtenteDAO {
 			return query.getResultStream().findFirst().orElse(null);
 		}
 	}
-    
+	
+    @Override
+	public Set<Utente> ricercaUtente (Utente utente){
+		String query = "SELECT u FROM Utente u join fetch u.ruoli WHERE 1=1";
+		if(utente.getNome() != null && !utente.getNome().isEmpty()) {
+			query += " and u.nome = :nome";
+		}
+		if(utente.getCognome() != null && !utente.getCognome().isEmpty()) {
+			query += " and u.cognome = :cognome";
+		}
+		if(utente.getUsername() != null && !utente.getUsername().isEmpty()) {
+			query += " and u.username = :username";
+		}
+		if(utente.getStato() != null ) {
+			query += " and u.stato = :stato";
+		}
+		
+		TypedQuery<Utente> newquery = entityManager.createQuery(query, Utente.class);
+		if(utente.getNome() != null && !utente.getNome().isEmpty()) {
+			newquery.setParameter("nome", utente.getNome());
+		}
+		if(utente.getCognome() != null && !utente.getCognome().isEmpty()) {
+			newquery.setParameter("cognome", utente.getCognome());
+		}
+		if(utente.getUsername() != null && !utente.getUsername().isEmpty()) {
+			newquery.setParameter("username", utente.getUsername());
+		}
+		if(utente.getStato() != null ) {
+			newquery.setParameter("stato", utente.getStato());
+		}
+		return newquery.getResultList().stream().collect(Collectors.toSet());
+	}
 
 	
 

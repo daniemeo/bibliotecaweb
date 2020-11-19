@@ -185,4 +185,26 @@ private UtenteDAO utenteDAO;
 			entityManager.close();
 		}
 	}
+	
+	@Override 
+	public Set<Utente> findByUtente(Utente utente){
+		
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return utenteDAO.ricercaUtente(utente);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
+
+	
+	}
+	
+	
 }

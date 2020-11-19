@@ -45,21 +45,25 @@ public class GestioneLibriFiltro implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String percorso = httpServletRequest.getRequestURI();
+		Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
 
-		if ( percorso.contains("PrepareCercaLibro")
-				|| percorso.contains("VisualizzaLibroServlet")|| percorso.contains("ExecuteCercaLibro")) {
+		if ( percorso.contains("PrepareCercaLibroServlet")
+				|| percorso.contains("VisualizzaLibroServlet")|| percorso.contains("ExecuteCercaLibroServlet")) {
 			chain.doFilter(request, response);
 			
 		} else {
-			Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
+			
 	           
 			for (Ruolo ruolo : utente.getRuoli()) {
 				if (CodiceRuolo.GUEST_ROLE == ruolo.getCodice()) {
 					httpServletResponse.sendRedirect(context);
+				} if (CodiceRuolo.ADMIN_ROLE == ruolo.getCodice() || CodiceRuolo.CLASSIC_ROLE == ruolo.getCodice()) {
+					chain.doFilter(request, response);
 				}
+				
 			}
+			
 		} 
-		
 		
 
 	}

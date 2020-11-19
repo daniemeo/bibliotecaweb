@@ -22,5 +22,7 @@ public interface UtenteService {
 
 	public void setUtenteDAO(UtenteDAO utenteDAO);
 
-	Utente cercaPerUsernameEPassword(String username, String password) throws Exception;
+	public Utente cercaPerUsernameEPassword(String username, String password) throws Exception;
+
+	public Set<Utente> findByUtente(Utente utente);
 }

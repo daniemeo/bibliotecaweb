@@ -42,7 +42,7 @@ public class ExecuteDeleteLibroServlet extends HttpServlet {
 		if( idLibroInput == null || idLibroInput.isEmpty()) {
 			
   			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-			request.getRequestDispatcher("formCercaLibro.jsp").forward(request, response);
+			request.getRequestDispatcher("libri/formCercaLibro.jsp").forward(request, response);
 			return;
 		}
 		Libro libro = new Libro();
@@ -56,7 +56,7 @@ public class ExecuteDeleteLibroServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/PrepareCercaLibroServlet");
+		response.sendRedirect(request.getContextPath()+"/libri/PrepareCercaLibroServlet");
 		
 	}
 

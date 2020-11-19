@@ -16,17 +16,17 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 
 /**
- * Servlet Filter implementation class GestioneUtentiFilter
+ * Servlet Filter implementation class GestioneAutoriFiltro
  */
-@WebFilter("/utenti/*")
-public class GestioneUtentiFilter implements Filter {
+@WebFilter("/autori/*")
+public class GestioneAutoriFiltro implements Filter {
 
     private String context;
 
 	/**
      * Default constructor. 
      */
-    public GestioneUtentiFilter() {
+    public GestioneAutoriFiltro() {
         // TODO Auto-generated constructor stub
     }
 
@@ -41,16 +41,29 @@ public class GestioneUtentiFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpServletRequest= (HttpServletRequest) request;
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		String percorso = httpServletRequest.getRequestURI();
+        
 		Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
-		for(Ruolo ruolo : utente.getRuoli()) {
-			if(CodiceRuolo.ADMIN_ROLE == ruolo.getCodice()) {
-				chain.doFilter(request, response);
-			} else {
-				httpServletResponse.sendRedirect(context);
+		
+		if ( percorso.contains("PrepareCercaAutoreServlet")
+				|| percorso.contains("VisualizzaAutoreServlet")|| percorso.contains("ExecuteCercaAutoreServlet")) {
+			chain.doFilter(request, response);
+			
+		} else {
+			
+	           
+			for (Ruolo ruolo : utente.getRuoli()) {
+				if (CodiceRuolo.GUEST_ROLE == ruolo.getCodice()) {
+					httpServletResponse.sendRedirect(context);
+				}if (CodiceRuolo.ADMIN_ROLE == ruolo.getCodice() || CodiceRuolo.CLASSIC_ROLE == ruolo.getCodice()) {
+					chain.doFilter(request, response);
+				}
 			}
-		}
+			
+		} 
+		
 	}
 
 	/**

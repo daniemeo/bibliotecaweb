@@ -16,7 +16,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteInsertAutoreServlet
  */
-@WebServlet("/ExecuteInsertAutoreServlet")
+@WebServlet("/autori/ExecuteInsertAutoreServlet")
 public class ExecuteInsertAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

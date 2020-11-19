@@ -69,7 +69,7 @@ public class ExecuteInsertLibroServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
-			request.getRequestDispatcher("formCercaLibro.jsp").forward(request, response);
+			request.getRequestDispatcher("resultCerca.jsp").forward(request, response);
 	}
 
 }

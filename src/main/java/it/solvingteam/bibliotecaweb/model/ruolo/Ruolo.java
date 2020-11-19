@@ -1,5 +1,8 @@
 package it.solvingteam.bibliotecaweb.model.ruolo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +10,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import it.solvingteam.bibliotecaweb.model.utente.Utente;
+
+
 
 @Entity
 @Table(name = "ruolo")
@@ -21,7 +29,8 @@ public class Ruolo {
 	private CodiceRuolo codice;
 	@Column(name = "descrizione")
 	private String descrizione;
-	
+	@ManyToMany(mappedBy = "ruoli")
+	private Set<Utente> utenti = new HashSet<>(0);
 	public Ruolo() {}
 	
 	public Ruolo(CodiceRuolo codice, String descrizione) {

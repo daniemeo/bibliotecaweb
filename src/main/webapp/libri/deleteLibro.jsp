@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="/header.jsp" />
      <title>controllo cancellazione</title>
-       <link href="./assets/css/global.css" rel="stylesheet">
+       <link href="${pageContext.request.contextPath}./assets/css/global.css" rel="stylesheet">
 </head>
 <body>
   <jsp:include page="/navbar.jsp" />
@@ -33,7 +33,7 @@
                       
 			    	</dl>
 				</div>	
-	<form method="post" action="libri/ExecuteDeleteLibroServlet" novalidate="novalidate">
+	<form method="post" action="${pageContext.request.contextPath}/libri/ExecuteDeleteLibroServlet" novalidate="novalidate">
 				<input type="hidden" name="idDaInviareComeParametro" id="idDaInviareComeParametro" value= "${requestScope.delete.id}">
 					
   				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>

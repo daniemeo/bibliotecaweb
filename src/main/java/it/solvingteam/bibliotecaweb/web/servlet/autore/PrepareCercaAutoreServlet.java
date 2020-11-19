@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PrepareCercaAutoreServlet
  */
-@WebServlet("/PrepareCercaAutoreServlet")
+@WebServlet("/autori/PrepareCercaAutoreServlet")
 public class PrepareCercaAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

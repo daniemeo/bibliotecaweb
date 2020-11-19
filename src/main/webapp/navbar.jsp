@@ -26,6 +26,9 @@
           <a class="dropdown-item" href="ListArticoliServlet">Risultati</a>
         </div>
       </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="LogoutServlet"> Logout <span class="sr-only">(current)</span></a>
+      </li>
      
       
     </ul>

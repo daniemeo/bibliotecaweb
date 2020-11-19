@@ -13,7 +13,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteDeleteAutoreServlet
  */
-@WebServlet("/ExecuteDeleteAutoreServlet")
+@WebServlet("/autori/ExecuteDeleteAutoreServlet")
 public class ExecuteDeleteAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class ExecuteDeleteAutoreServlet extends HttpServlet {
 		if( idAutoreInput == null || idAutoreInput.isEmpty()) {
 			
   			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
-			request.getRequestDispatcher("formCercaAutore.jsp").forward(request, response);
+			request.getRequestDispatcher("autori/formCercaAutore.jsp").forward(request, response);
 		
   		return; 
 		}
@@ -53,7 +53,7 @@ public class ExecuteDeleteAutoreServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/PrepareCercaAutoreServlet");
+		response.sendRedirect(request.getContextPath()+"/autori/PrepareCercaAutoreServlet");
   		
 	}
 

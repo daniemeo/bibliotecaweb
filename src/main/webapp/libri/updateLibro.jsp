@@ -8,7 +8,7 @@
 	<title>modifica libro</title>
 	
 	<!-- style per le pagine diverse dalla index -->
-    <link href="./assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
@@ -41,7 +41,7 @@
 					
 					
 
-					<form method="post" action="libri/ExecuteUpdateLibroServlet" novalidate="novalidate">
+					<form method="post" action="${pageContext.request.contextPath}/libri/ExecuteUpdateLibroServlet" novalidate="novalidate">
 					<div class="form-row">
 					<input type="hidden" name="libroUpdate" id="libroUpdate" value="${requestScope.libroUpdate.id}" >
 						
@@ -82,7 +82,7 @@
 
 					
 
-		    
+		    </div>
 		    
 			<!-- end card-body -->			   
 		    </div>

@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<jsp:include page="./header.jsp" />
+	<jsp:include page="/header.jsp" />
 	<title>Inserisci nuovo</title>
 	
 	<!-- style per le pagine diverse dalla index -->
-    <link href="./assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
-	<jsp:include page="./navbar.jsp" />
+	<jsp:include page="/navbar.jsp" />
 	
 	<main role="main" class="container">
 	
@@ -38,7 +38,7 @@
 
 					<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 
-					<form method="post" action="ExecuteInsertAutoreServlet" class= "needs-validation" novalidate>
+					<form method="post" action="${pageContext.request.contextPath}/autori/ExecuteInsertAutoreServlet" class= "needs-validation" novalidate>
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -85,7 +85,7 @@
 	
 	<!-- end container -->	
 	</main>
-	<jsp:include page="./footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 
 </body>
 </html>

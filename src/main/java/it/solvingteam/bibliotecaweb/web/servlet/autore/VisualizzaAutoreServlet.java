@@ -14,7 +14,7 @@ import it.solvingteam.bibliotecaweb.service.autore.AutoreService;
 /**
  * Servlet implementation class VisualizzaAutoreServlet
  */
-@WebServlet("/VisualizzaAutoreServlet")
+@WebServlet("/autori/VisualizzaAutoreServlet")
 public class VisualizzaAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

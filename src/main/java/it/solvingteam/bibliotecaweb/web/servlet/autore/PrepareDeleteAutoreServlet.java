@@ -16,7 +16,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class PrepareDeleteAutoreServlet
  */
-@WebServlet("/PrepareDeleteAutoreServlet")
+@WebServlet("/autori/PrepareDeleteAutoreServlet")
 public class PrepareDeleteAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class PrepareDeleteAutoreServlet extends HttpServlet {
 			if (autore == null) {
 			request.setAttribute("errorMessage", "Attenzione!! Questo autore non esiste!!!");
 			
-			request.getRequestDispatcher("PrepareCercaAutoreServlet").forward(request, response);
+			request.getRequestDispatcher("autori/PrepareCercaAutoreServlet").forward(request, response);
 			
 			return;
 			}

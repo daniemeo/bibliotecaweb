@@ -5,7 +5,7 @@
 <html lang="it">
 <head>
 	<jsp:include page="/header.jsp" />
-	<title>Inserisci nuovo libro</title>
+	<title>Inserisci nuovo utente </title>
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
@@ -32,47 +32,56 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        <h5>Inserisci nuovo Libro</h5> 
+		        <h5>Inserisci nuovo Utente</h5> 
 		    </div>
 		    <div class='card-body'>
 
 					<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 
-					<form method="post" action="${pageContext.request.contextPath}/libri/ExecuteInsertLibroServlet" class= "needs-validation" novalidate>
+					<form method="post" action="${pageContext.request.contextPath}/utenti/ExecuteInsertUtenteServlet" class= "needs-validation" novalidate>
 					
 						<div class="form-row">
 						    <div class="form-group col-md-6">
-								<label>Titolo <span class="text-danger">*</span></label>
-								<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo" required>
+								<label>Nome <span class="text-danger">*</span></label>
+								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" required>
 								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire il titolo del libro!
+                                   Attenzione! Devi inserire il nome dell'utente!
                                  </div>
 							</div>
 							
 							<div class="form-group col-md-6">
-								<label>Genere <span class="text-danger">*</span></label>
-								<input type="text" name="genere" id="genere" class="form-control" placeholder="Inserire il genere" required>
+								<label>Cognome <span class="text-danger">*</span></label>
+								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" required>
 								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire il genere del libro!
+                                   Attenzione! Devi inserire il cognome dell'utente!!
                                  </div>
 							</div>
 							
 							<div class="form-group col-md-6">
-								<label>Trama <span class="text-danger">*</span></label>
-								<input type="text" name="trama" id="trama" class="form-control" placeholder="Inserire la trama" required>
+								<label>Username<span class="text-danger">*</span></label>
+								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username" required>
 								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire la trama del libro!!
+                                   Attenzione! 
                                  </div>
 							</div>
 							<div class="form-group col-md-6">
-	                          <label>Autore</label>
-	                             <select id="listaAutori" name="autore_id" class="custom-select browser-default" >	
-				                   <option value="">- Seleziona Autori -</option>
-					               <c:forEach items="${requestScope.listaAutori}" var="autore">
-						             <option value="${autore.id}"><c:out value="${autore.nome}"/>&nbsp;<c:out value="${autore.cognome}"/></option>
-					               </c:forEach>
-				                 </select>
-	                          </div>
+								<label>Password<span class="text-danger">*</span></label>
+								<input type="text" name="password" id="password" class="form-control" placeholder="Inserire Password" required>
+								<div class="invalid-feedback">
+                                   Attenzione! 
+                                 </div>
+							</div>
+							
+							
+							 <div class="custom-control custom-checkbox">
+								   
+								   <c:forEach items="${requestScope.listaRuoli}" var="ruolo">
+							    		<input type="checkbox" class="" id="ruolo${ruolo.id}" name="ruoliSelezionati" value="${ruolo.id}"/>
+								    	${ruolo.codice}
+								    	<br>
+								   </c:forEach>
+							 </div>
+							
 						</div>
 						
 						

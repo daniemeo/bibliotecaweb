@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<jsp:include page="./header.jsp" />
+	<jsp:include page="/header.jsp" />
 	<title>Visualizza libro</title>
 	
 	<!-- style per le pagine diverse dalla index -->
-    <link href="./assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
-	<jsp:include page="./navbar.jsp" />
+	<jsp:include page="/navbar.jsp" />
 	
 	<main role="main" class="container">
 		
@@ -49,7 +49,7 @@
 		    </div>
 		    
 		    <div class='card-footer'>
-		        <a href="${pageContext.request.contextPath}/PrepareCercaAutoreServlet"
+		        <a href="${pageContext.request.contextPath}/autori/PrepareCercaAutoreServlet"
 		         class='btn btn-outline-secondary' style='width:80px'>
 		            <i class='fa fa-chevron-left'></i> Back
 		        </a>

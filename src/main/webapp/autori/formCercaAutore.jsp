@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="./header.jsp" />
+<jsp:include page="/header.jsp" />
 <meta charset="ISO-8859-1">
 <title>Cerca Autore</title>
-<link href="./assets/css/global.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="./navbar.jsp" />
+<jsp:include page="/navbar.jsp" />
  <main role="main" class="container">
  
  <div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
@@ -43,14 +43,9 @@
 		    <div class='card-header'>
 		       Cerca Autore
 		    </div>
-		<div class='card-body'>
-		    <a class="btn btn-primary " href="PrepareInsertAutore">Add New</a>
-		 </div>
-      
          
-	  
 	    <div class='card-body'>
-	      <form action="ExecuteCercaAutoreServlet" method="post">
+	      <form action="${pageContext.request.contextPath}/autori/ExecuteCercaAutoreServlet" method="post">
 	         <div class="form-row">
 				<div class="form-group col-md-6">
 	              <label>Nome </label>
@@ -71,45 +66,10 @@
 	   
 	   
 	      
-	      	<div class='table-responsive'>
-		    	<table class='table table-striped ' >
-	                <thead>
-	                    <tr>
-	                        
-	                        <th>Nome</th>
-	                        <th>Cognome</th>
-	                        <th>Data di Nascita </th>
-	                     
-	                        
-	                    </tr>
-	                </thead>
-		            <tbody>   
-		            
-					    <c:forEach items="${requestScope.listaAutori}" var= "autore">
-						     <tr >
-						           <td><c:out value="${autore.nome}"></c:out></td>
-						           <td><c:out value="${autore.cognome}"></c:out></td>
-						           <td><c:out value="${autore.dataNascita}"></c:out></td>
-						           <td>
-						           <a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idDaInviareComeParametro=${autore.id}"> Visualizza</a>
-									
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateAutoreSerlvlet?idDaInviareExecuteUpdate=${autore.id}">Edit</a>
-								
-									
-									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteAutoreServlet?idDaInviareComeParametro=${autore.id}">Delete</a>
-									
-								</td>
-		                		
-						          
-						           
-				                   
-				             </tr>
-					    </c:forEach>
-				  	</tbody> 
-			  	</table>
+	      
 		  	</div>
-	   </div>
-	  </div>
+	 
+	  
 		
 </main>	
 </body>

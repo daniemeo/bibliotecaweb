@@ -13,7 +13,7 @@ import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 /**
  * Servlet implementation class ExecuteCercaAutoreServlet
  */
-@WebServlet("/ExecuteCercaAutoreServlet")
+@WebServlet("/autori/ExecuteCercaAutoreServlet")
 public class ExecuteCercaAutoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,7 +48,7 @@ public class ExecuteCercaAutoreServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("formCercaAutore.jsp").forward(request, response);
+		request.getRequestDispatcher("resultsCercaPerAutore.jsp").forward(request, response);
 
 
 	}

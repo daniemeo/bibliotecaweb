@@ -13,4 +13,6 @@ public interface RuoloService {
 	public Ruolo get(Long id) throws Exception;
 
 	public void setRuoloDAO(RuoloDAO ruoloDAO);
+
+	public Set<Ruolo> listAll() throws Exception;
 }

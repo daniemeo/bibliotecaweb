@@ -1,4 +1,4 @@
-package it.solvingteam.bibliotecaweb.web.servlet.utente;
+package it.solvingteam.bibliotecaweb.web.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,22 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.solvingteam.bibliotecaweb.model.utente.Utente;
-import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
-
-
-
 /**
- * Servlet implementation class PrepareInsertUtenteServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/utenti/PrepareInsertUtenteServlet")
-public class PrepareInsertUtenteServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrepareInsertUtenteServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +27,10 @@ public class PrepareInsertUtenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
-		try {
-			
-			request.setAttribute("listaRuoli", MyServiceFactory.getRuoloServiceInstance().listAll());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.getRequestDispatcher("insertUtente.jsp").forward(request, response);
-		
+		 HttpSession sessione = request.getSession();
+		 sessione.invalidate();
+		 
+		 request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**
