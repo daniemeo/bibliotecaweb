@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
+import it.solvingteam.bibliotecaweb.service.utente.UtenteService;
 
 /**
  * Servlet implementation class ExecuteInsertUtenteServlet
@@ -50,16 +51,27 @@ public class ExecuteInsertUtenteServlet extends HttpServlet {
 		String usernameInput = request.getParameter("username");
 		String passwordInput = request.getParameter("password");
 		String[] ruoliInInput = request.getParameterValues("ruoliSelezionati");
+		
 		try {
+		
+			UtenteService service = MyServiceFactory.getUtenteServiceInstance();
 			Set<Ruolo> ruoli = new HashSet<Ruolo>();
 			for (String ruo : ruoliInInput) {
 				Long id = Long.parseLong(ruo);
-				Ruolo ruolo = MyServiceFactory.getRuoloServiceInstance().get(id);
+				Ruolo ruolo = new Ruolo();
+				ruolo.setId(id);
 				ruoli.add(ruolo);
+				
 			}
-
+			
+            
 			Utente utente = new Utente(nomeInput, cognomeInput, usernameInput, passwordInput, ruoli);
+			
 			MyServiceFactory.getUtenteServiceInstance().inserisciNuovo(utente);
+		    
+			
+			
+			
 			request.setAttribute("listaUtenti", MyServiceFactory.getUtenteServiceInstance().setAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -29,8 +29,7 @@ public class Ruolo {
 	private CodiceRuolo codice;
 	@Column(name = "descrizione")
 	private String descrizione;
-	@ManyToMany(mappedBy = "ruoli")
-	private Set<Utente> utenti = new HashSet<>(0);
+
 	public Ruolo() {}
 	
 	public Ruolo(CodiceRuolo codice, String descrizione) {

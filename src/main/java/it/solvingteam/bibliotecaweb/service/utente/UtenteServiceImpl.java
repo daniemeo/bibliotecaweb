@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import it.solvingteam.bibliotecaweb.dao.EntityManagerUtil;
 import it.solvingteam.bibliotecaweb.dao.utente.UtenteDAO;
 import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
+import it.solvingteam.bibliotecaweb.model.utente.StatoUtente;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 
 
@@ -108,7 +109,7 @@ private UtenteDAO utenteDAO;
 	}
 
 	@Override
-	public boolean rimuovi(Utente utenteInstance) throws Exception {
+	public boolean rimuovi(Long id) throws Exception {
 		
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
             boolean result= false;
@@ -118,9 +119,10 @@ private UtenteDAO utenteDAO;
 
 			// uso l'injection per il dao
 			utenteDAO.setEntityManager(entityManager);
-
-			// eseguo quello che realmente devo fare
-			utenteDAO.delete(utenteInstance);
+			
+			Utente utenteInstance = utenteDAO.get(id);
+			utenteInstance.setStato(StatoUtente.DISABILITATO);
+			utenteDAO.update(utenteInstance);
             result = true;
 			entityManager.getTransaction().commit();
 			

@@ -5,7 +5,7 @@
 <html lang="it">
 <head>
 	<jsp:include page="/header.jsp" />
-	<title>Visualizza libro</title>
+	<title>Visualizza Utente</title>
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
@@ -18,44 +18,48 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        Visualizza Libro
+		        Visualizza Utente
 		    </div>
 		    
 		
 		    <div class='card-body'>
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Id Libro:</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.id}"></c:out></dd>
+				  <dt class="col-sm-3 text-right">Id Utente:</dt>
+				  <dd class="col-sm-9"><c:out value="${requestScope.utente.id}"></c:out></dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Titolo:</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.titolo}"></c:out></dd>
+				  <dt class="col-sm-3 text-right">Nome:</dt>
+				  <dd class="col-sm-9"><c:out value="${requestScope.utente.nome}"></c:out></dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Genere</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.genere}"></c:out></dd>
+				  <dt class="col-sm-3 text-right">Cognome</dt>
+				  <dd class="col-sm-9"><c:out value="${requestScope.utente.cognome}"></c:out></dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Autore</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.autore.id}"></c:out></dd>
+				  <dt class="col-sm-3 text-right">Username</dt>
+				  <dd class="col-sm-9"><c:out value="${requestScope.utente.username}"></c:out></dd>
 		    	</dl>
 		    
-		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Stato</dt>
+				  <dd class="col-sm-9"><c:out value="${requestScope.utente.stato}"></c:out></dd>
+		    	</dl>
+		    
 		    	
 		    	
 		    </div>
 		    
 		    <div class='card-footer'>
-		        <a href="${pageContext.request.contextPath}/libri/PrepareCercaLibroServlet"
+		        <a href="${pageContext.request.contextPath}/utenti/PrepareCercaUtenteServlet"
 		         class='btn btn-outline-secondary' style='width:80px'>
 		            <i class='fa fa-chevron-left'></i> Back
 		        </a>
 		    </div>
 		</div>	
-	</main>
+		</main>
 	<jsp:include page="/footer.jsp" />
 	
 </body>

@@ -89,10 +89,10 @@
 										<c:out value="${ruolo.codice}"/>,
 									</c:forEach>
 								</td>
-								<td><a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idDaInviareComeParametro=${autore.id}">
+								<td><a class="btn  btn-sm btn-outline-secondary" href="VisualizzaUtenteServlet?idDaInviareComeParametro=${utente.id}">
 										Visualizza</a> 
-										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateAutoreSerlvlet?idDaInviareExecuteUpdate=${autore.id}">Edit</a>
-									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteAutoreServlet?idDaInviareComeParametro=${autore.id}">Delete</a>
+										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateUtenteServlet?idDaInviareExecuteUpdate=${utente.id}">Edit</a>
+									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteServlet?idDaInviareComeParametro=${utente.id}">Delete</a>
 
 								</td>
 

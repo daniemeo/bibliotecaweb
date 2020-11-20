@@ -40,7 +40,7 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 		@Enumerated(EnumType.STRING)
 		private StatoUtente stato = StatoUtente.ATTIVO;
 
-		@ManyToMany(cascade = CascadeType.PERSIST)
+		@ManyToMany
 		@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 		private Set<Ruolo> ruoli = new HashSet<>(0);
 		
@@ -49,6 +49,15 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 			this.cognome=cognome;
 			this.password= password;
 			this.username= username;
+			this.ruoli = ruoli;
+			
+		}
+	      public Utente(String nome, String cognome, String username, String password) {
+			this.nome= nome;
+			this.cognome= cognome;
+			this.username = username;
+			this.password = password;
+			
 		}
 		
 		public Utente(String nome, String cognome, String username, StatoUtente stato) {

@@ -59,7 +59,7 @@ public class ExecuteUpdateAutoreServlet extends HttpServlet {
 	    	
 	    	MyServiceFactory.getAutoreServiceInstance().aggiorna(autore);
 			request.setAttribute("listaAutoriAttribute", MyServiceFactory.getAutoreServiceInstance().listAll());
-			request.setAttribute("successMessage", "Operazione effettuata con successo");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

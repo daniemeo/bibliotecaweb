@@ -43,6 +43,9 @@ public class GestioneUtentiFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpServletRequest= (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		if(httpServletRequest.getSession().getAttribute("utente") == null) {
+			httpServletResponse.sendRedirect(context);
+		}
 		Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
 		for(Ruolo ruolo : utente.getRuoli()) {
 			if(CodiceRuolo.ADMIN_ROLE == ruolo.getCodice()) {

@@ -49,9 +49,10 @@ public class ExecuteUpdateLibroServlet extends HttpServlet {
 		 if(genereLibroInput != null && !genereLibroInput.isEmpty()){
 				genere = GenereLibro.valueOf(genereLibroInput);
 			}
-		 Autore autore = null;
+		 
+		    Autore autore = null;
 			if (idAutoreLibroInput != null && !idAutoreLibroInput.isEmpty()) {
-				autore = new Autore();
+		 		 autore = new Autore();
 				autore.setId(Long.parseLong(idAutoreLibroInput));
 			}
 			
@@ -63,7 +64,7 @@ public class ExecuteUpdateLibroServlet extends HttpServlet {
 		 libro.setAutore(autore);
 		 
 		 try {
-			 request.setAttribute("listaAutori",MyServiceFactory.getAutoreServiceInstance().listAll());
+			request.setAttribute("listaAutori",MyServiceFactory.getAutoreServiceInstance().listAll());
 			MyServiceFactory.getLibroServiceInstance().aggiorna(libro);
 			request.setAttribute("listaLibriAttribute", MyServiceFactory.getLibroServiceInstance().setAll());
 			request.setAttribute("successMessage", "Operazione effettuata con successo");

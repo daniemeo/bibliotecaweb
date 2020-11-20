@@ -1,28 +1,27 @@
 package it.solvingteam.bibliotecaweb.web.servlet.utente;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.solvingteam.bibliotecaweb.model.utente.Utente;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
-
-
+import it.solvingteam.bibliotecaweb.service.utente.UtenteService;
 
 /**
- * Servlet implementation class PrepareInsertUtenteServlet
+ * Servlet implementation class VisualizzaUtenteServlet
  */
-@WebServlet("/utenti/PrepareInsertUtenteServlet")
-public class PrepareInsertUtenteServlet extends HttpServlet {
+@WebServlet("/utenti/VisualizzaUtenteServlet")
+public class VisualizzaUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrepareInsertUtenteServlet() {
+    public VisualizzaUtenteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,16 +30,18 @@ public class PrepareInsertUtenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
-		try {
-			
-			request.setAttribute("listaRuoli", MyServiceFactory.getRuoloServiceInstance().listAll());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.getRequestDispatcher("insertUtente.jsp").forward(request, response);
+	 String idUtenteDettaglio = request.getParameter("idDaInviareComeParametro");
+	 Utente utente;
+	 UtenteService service = MyServiceFactory.getUtenteServiceInstance();
+	 
+	 try {
+		utente = service.get(Long.parseLong(idUtenteDettaglio));
+		request.setAttribute("utente", utente);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		request.getRequestDispatcher("formVisualizzaUtente.jsp").forward(request, response);
 		
 	}
 

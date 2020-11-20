@@ -16,7 +16,7 @@ public interface UtenteService {
 
 	public boolean inserisciNuovo(Utente utenteInstance) throws Exception;
 
-	public boolean rimuovi(Utente utenteInstance) throws Exception;
+	public boolean rimuovi(Long id) throws Exception;
 	
 	public boolean aggiungiRuolo(Utente UtenteEsistente,  Ruolo ruoloInstance) throws Exception;
 
