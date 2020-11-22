@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import it.solvingteam.bibliotecaweb.dao.EntityManagerUtil;
 import it.solvingteam.bibliotecaweb.dao.utente.UtenteDAO;
 import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
-import it.solvingteam.bibliotecaweb.model.utente.StatoUtente;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 
 
@@ -107,61 +106,87 @@ private UtenteDAO utenteDAO;
 		return result;
 		
 	}
-
 	@Override
-	public boolean rimuovi(Long id) throws Exception {
-		
+	public boolean rimuovi(Utente utenteInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-            boolean result= false;
-		try {
-			// questo è come il MyConnection.getConnection()
-			entityManager.getTransaction().begin();
+        boolean result= false;
+	try {
+		// questo è come il MyConnection.getConnection()
+		entityManager.getTransaction().begin();
 
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
-			
-			Utente utenteInstance = utenteDAO.get(id);
-			utenteInstance.setStato(StatoUtente.DISABILITATO);
-			utenteDAO.update(utenteInstance);
-            result = true;
-			entityManager.getTransaction().commit();
-			
-		} catch (Exception e) {
-			entityManager.getTransaction().rollback();
-			e.printStackTrace();
-			throw e;
-		}
-		return result;
+		// uso l'injection per il dao
+		utenteDAO.setEntityManager(entityManager);
+        
+		// eseguo quello che realmente devo fare
+		utenteDAO.delete(utenteInstance);
+        result = true;
+		entityManager.getTransaction().commit();
+		
+	} catch (Exception e) {
+		entityManager.getTransaction().rollback();
+		e.printStackTrace();
+		throw e;
+	}
+	return result;
+	
 	}
 	
-	@Override
-	public boolean aggiungiRuolo(Utente utenteEsistente,  Ruolo ruoloInstance) throws Exception {
-		// questo è come una connection
-		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-         boolean result= false;
-		try {
-			// questo è come il MyConnection.getConnection()
-			entityManager.getTransaction().begin();
 
-			// uso l'injection per il dao
-			utenteDAO.setEntityManager(entityManager);
-
-			boolean utenteAggiornato = utenteDAO.update(utenteEsistente);
-			if(utenteAggiornato) {
-			utenteEsistente = entityManager.merge(utenteEsistente);
-			ruoloInstance = entityManager.merge(ruoloInstance);
-		    utenteEsistente.getRuoli().add(ruoloInstance);
-			entityManager.getTransaction().commit();
-			result = true;
-			
-			}
-		} catch (Exception e) {
-			entityManager.getTransaction().rollback();
-			e.printStackTrace();
-			throw e;
-		}
-		return result;
-	}
+//	@Override
+//	public boolean rimuovi(Long id) throws Exception {
+//		
+//		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+//            boolean result= false;
+//		try {
+//			// questo è come il MyConnection.getConnection()
+//			entityManager.getTransaction().begin();
+//
+//			// uso l'injection per il dao
+//			utenteDAO.setEntityManager(entityManager);
+//			
+//			Utente utenteInstance = utenteDAO.get(id);
+//			utenteInstance.setStato(StatoUtente.DISABILITATO);
+//			utenteDAO.update(utenteInstance);
+//            result = true;
+//			entityManager.getTransaction().commit();
+//			
+//		} catch (Exception e) {
+//			entityManager.getTransaction().rollback();
+//			e.printStackTrace();
+//			throw e;
+//		}
+//		return result;
+//	}
+	
+//	
+//	@Override
+//	public boolean aggiungiRuolo(Utente utenteEsistente,  Ruolo ruoloInstance) throws Exception {
+//		// questo è come una connection
+//		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+//         boolean result= false;
+//		try {
+//			// questo è come il MyConnection.getConnection()
+//			entityManager.getTransaction().begin();
+//
+//			// uso l'injection per il dao
+//			utenteDAO.setEntityManager(entityManager);
+//
+//			boolean utenteAggiornato = utenteDAO.update(utenteEsistente);
+//			if(utenteAggiornato) {
+//			utenteEsistente = entityManager.merge(utenteEsistente);
+//			ruoloInstance = entityManager.merge(ruoloInstance);
+//		    utenteEsistente.getRuoli().add(ruoloInstance);
+//			entityManager.getTransaction().commit();
+//			result = true;
+//			
+//			}
+//		} catch (Exception e) {
+//			entityManager.getTransaction().rollback();
+//			e.printStackTrace();
+//			throw e;
+//		}
+//		return result;
+//	}
 	
 	@Override
 	public void setUtenteDAO(UtenteDAO utenteDAO) {
@@ -207,6 +232,7 @@ private UtenteDAO utenteDAO;
 
 	
 	}
+
 	
 	
 }

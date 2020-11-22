@@ -48,12 +48,12 @@
 	      <form action="${pageContext.request.contextPath}/autori/ExecuteCercaAutoreServlet" method="post">
 	         <div class="form-row">
 				<div class="form-group col-md-6">
-	              <label>Nome </label>
-        			<input type="text" name="nome" >
+	              <label for="nome">Nome </label>
+        			<input type="text" id="nome" name="nome"  class="form-control">
 	        	</div>
 	        	<div class="form-group col-md-6">
-	                <label>Cognome</label>
-	                 <input type="text" name="cognome" >
+	                <label for="cognome">Cognome</label>
+	                 <input type="text" id="cognome" name="cognome"  class="form-control">
 	            </div>
 	           
 	             
@@ -63,7 +63,13 @@
 	
           </form>
 	    </div>
-	   
+	     <div class='card-footer'>
+		        <a href="${pageContext.request.contextPath}/home.jsp"
+		         class='btn btn-outline-secondary' style='width:80px'>
+		            <i class='fa fa-chevron-left'></i> Back
+		        </a>
+		 </div>
+	     
 	   
 	      
 	      
@@ -72,5 +78,7 @@
 	  
 		
 </main>	
+
+	<jsp:include page="/footer.jsp" />
 </body>
 </html>

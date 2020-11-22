@@ -64,14 +64,23 @@
 				method="post">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label>Titolo </label> <input type="text" name="titolo">
+						<label>Titolo </label> <input class="form-control" type="text" name="titolo">
 					</div>
 					<div class="form-group col-md-6">
-						<label>Trama</label> <input type="text" name="trama">
+						<label>Trama</label> <input class="form-control" type="text" name="trama">
 					</div>
 					<div class="form-group col-md-6">
-						<label>Genere</label> <input type="text" name="genere">
-					</div>
+                          <label>Genere</label>
+                             <select id="listaGeneri" name="genere" class="form-control" >	
+			                   <option value="${NULL}">- Seleziona Genere -</option>
+				               <c:forEach items="${listaGeneri}" var="genere">
+				                <c:if test="${genere != 'NULL' }">
+					             <option value="${genere}"><c:out value="${genere}"/></option>
+					            </c:if>
+				               </c:forEach>
+			                 </select>
+                   </div>
+					
 					<div class="form-group col-md-6">
 						<label>Autore</label> <select id="listaAutori" name="autore_id"
 							class="custom-select browser-default">
@@ -83,6 +92,7 @@
 							</c:forEach>
 						</select>
 					</div>
+					
 				</div>
 				<button type="submit" name="submit" value="submit" id="submit"
 					class="btn btn-primary">Cerca</button>
@@ -90,6 +100,12 @@
 
 			</form>
 			</div>
+			<div class='card-footer'>
+					<a href="${pageContext.request.contextPath}/home.jsp"
+						class='btn btn-outline-secondary' style='width: 80px'> <i
+						class='fa fa-chevron-left'></i> Back
+					</a>
+				</div>
 		</div>
 
 

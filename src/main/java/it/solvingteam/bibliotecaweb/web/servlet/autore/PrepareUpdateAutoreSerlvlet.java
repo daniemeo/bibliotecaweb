@@ -1,6 +1,7 @@
 package it.solvingteam.bibliotecaweb.web.servlet.autore;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,12 +32,16 @@ public class PrepareUpdateAutoreSerlvlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idAutore=request.getParameter("idDaInviareExecuteUpdate");
 		try {
+			
+			
 			Autore autore = MyServiceFactory.getAutoreServiceInstance().get(Long.parseLong(idAutore));
 			if (autore == null) {
 				request.setAttribute("errorMessage", "Attenzione, l'id dell'utete che hai selezionato non risulta nella nostra lista ");
 				request.getRequestDispatcher("formCercaAutore.jsp");
 			}
+			
 			request.setAttribute("autoreUpdate", autore);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

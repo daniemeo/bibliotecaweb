@@ -22,13 +22,14 @@
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 		</div>
-		
+		<c:forEach items= "${requestScope.errorMessage}" var= "errore">
 		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-		  ${errorMessage}
+		  ${errore}
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
+		</c:forEach>
 		
 		<div class='card'>
 		    <div class='card-header'>
@@ -58,18 +59,14 @@
 								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username"  value="${utente.username}">
 								
 							</div>
-							<div class="form-group col-md-6">
-								<label>Password</label>
-								<input type="text" name="password" id="password" class="form-control" placeholder="Inserire Password"  value="${utente.password}">
-								
-							</div>
+							
 							<div class="form-group col-md-6">
 	                          <label>Stato</label>
 	                             <select id="listaStati" name="stato" class="form-control" value="${utente.stato}">	
 				                   <option value="${NULL}">- Seleziona Stato -</option>
 					               <c:forEach items="${listaStati}" var="stato">
 					                <c:if test="${stato != 'NULL' }">
-						             <option value="${stato}"><c:out value="${stato}"/></option>
+						             <option value="${stato}"  ${stato == utente.stato ? 'selected="selected"' : '' }><c:out value="${stato}"/></option>
 						            </c:if>
 					               </c:forEach>
 				                 </select>
@@ -80,7 +77,13 @@
 							 <div class="custom-control custom-checkbox">
 								   
 								   <c:forEach items="${requestScope.listaRuoli}" var="ruolo" >
-							    		<input type="checkbox" class="" id="ruolo${ruolo.id}" name="ruoliSelezionati" value="${ruolo.id}"/>
+							    		<input type="checkbox" class="" id="ruolo${ruolo.id}" name="ruoliSelezionati" value="${ruolo.id}"
+							    		<c:forEach items="${utente.ruoli}" var="ruoloUtente" >
+							    		 	${ruolo.id == ruoloUtente.id ? 'checked="checked"' : '' }
+							    		</c:forEach>
+							    		
+							    		
+							    		/>
 								    	${ruolo.codice}
 								    	<br>
 								   </c:forEach>
@@ -92,6 +95,13 @@
 					
 					</form>
 					
+					
+				</div>
+				<div class='card-footer'>
+					<a href="resultsCercaPerUtente.jsp"
+						class='btn btn-outline-secondary' style='width: 80px'> <i
+						class='fa fa-chevron-left'></i> Back
+					</a>
 				</div>
 			
 		</div>

@@ -21,14 +21,14 @@ import it.solvingteam.bibliotecaweb.model.utente.Utente;
 @WebFilter("/utenti/*")
 public class GestioneUtentiFilter implements Filter {
 
-    private String context;
+	private String context;
 
 	/**
-     * Default constructor. 
-     */
-    public GestioneUtentiFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	 * Default constructor.
+	 */
+	public GestioneUtentiFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -40,15 +40,25 @@ public class GestioneUtentiFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpServletRequest= (HttpServletRequest) request;
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-		if(httpServletRequest.getSession().getAttribute("utente") == null) {
+		if (httpServletRequest.getSession() == null || httpServletRequest.getSession().getAttribute("utente") == null) {
+			// request.setAttribute("errorMessage", "Attenzione sono presenti errori di
+			// validazione");
 			httpServletResponse.sendRedirect(context);
-		}
-		Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
-		for(Ruolo ruolo : utente.getRuoli()) {
-			if(CodiceRuolo.ADMIN_ROLE == ruolo.getCodice()) {
+			// return;
+		} else {
+			Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
+
+			boolean isAdmin = false;
+			for (Ruolo ruolo : utente.getRuoli()) {
+				if (CodiceRuolo.ADMIN_ROLE == ruolo.getCodice()) {
+					isAdmin = true;
+				}
+			}
+			if (isAdmin) {
 				chain.doFilter(request, response);
 			} else {
 				httpServletResponse.sendRedirect(context);

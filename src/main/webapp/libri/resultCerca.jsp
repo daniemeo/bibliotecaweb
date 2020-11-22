@@ -58,8 +58,12 @@
 		<div class='card'>
 			<div class='card-header'>Risultati ricerca libro</div>
 			<div class='card-body'>
-				<a class="btn btn-primary "
-					href="${pageContext.request.contextPath}/libri/PrepareInsertLibroServlet">Add New</a>
+		       <c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+					<c:if test="${ruoli.codice == 'ADMIN_ROLE' || ruoli.codice == 'CLASSIC_ROLE' }">
+				         <a class="btn btn-primary "	href="${pageContext.request.contextPath}/libri/PrepareInsertLibroServlet">Add New</a>
+			        </c:if> 
+			   </c:forEach>	
+				    
 			</div>
 
 
@@ -78,30 +82,37 @@
 					</thead>
 					<tbody>
 
-						<c:forEach items="${requestScope.listaLibri}" var="libro">
+				<c:forEach items="${requestScope.listaLibri}" var="libro">
 							<tr>
 								<td><c:out value="${libro.titolo}"></c:out></td>
 								<td><c:out value="${libro.trama}"></c:out></td>
 								<td><c:out value="${libro.genere}"></c:out></td>
-								<td><c:out value="${libro.autore.nome}"></c:out></td>
-								<td><a class="btn  btn-sm btn-outline-secondary"
-									href="${pageContext.request.contextPath}/libri/VisualizzaLibroServlet?idDaInviareComeParametro=${libro.id}">
-										Visualizza</a> <a
-									class="btn  btn-sm btn-outline-primary ml-2 mr-2"
-									href="${pageContext.request.contextPath}/libri/PrepareUpdateLibroServlet?idDaInviareExecuteUpdate=${libro.id}">Edit</a>
-
-
-									<a class="btn btn-outline-danger btn-sm"
-									href="${pageContext.request.contextPath}/libri/PrepareDeleteLibroServlet?idDaInviareComeParametro=${libro.id}">Delete</a>
-
-								</td>
-
-
-
-							</tr>
+								<td><c:out value="${libro.autore.nome}"/> <br> <c:out value="${libro.autore.cognome}"/></td>
+								
+								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/libri/VisualizzaLibroServlet?idDaInviareComeParametro=${libro.id}">Visualizza</a>
+								
+						<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+							<c:if test="${ruoli.codice == 'ADMIN_ROLE' || ruoli.codice == 'CLASSIC_ROLE' }">
+								 <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/libri/PrepareUpdateLibroServlet?idDaInviareExecuteUpdate=${libro.id}">Edit</a>
+					        </c:if> 
 						</c:forEach>
+						
+						<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+							<c:if test="${ruoli.codice == 'ADMIN_ROLE' || ruoli.codice == 'CLASSIC_ROLE' }">
+									<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/libri/PrepareDeleteLibroServlet?idDaInviareComeParametro=${libro.id}">Delete</a>
+						    </c:if> 
+				</c:forEach>	
+						
+							</tr>
+					</c:forEach>
 					</tbody>
 				</table>
+				<div class='card-footer'>
+					<a href="formCercaLibro.jsp"
+						class='btn btn-outline-secondary' style='width: 80px'> <i
+						class='fa fa-chevron-left'></i> Back
+					</a>
+				</div>
 				</div>
 			</div>
 	  

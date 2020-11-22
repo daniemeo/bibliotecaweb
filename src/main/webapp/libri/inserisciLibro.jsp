@@ -22,14 +22,14 @@
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 		</div>
-		
+		<c:forEach items= "${requestScope.errorMessage}" var= "errore">
 		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-		  ${errorMessage}
+		  ${errore}
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
-		
+		</c:forEach>
 		<div class='card'>
 		    <div class='card-header'>
 		        <h5>Inserisci nuovo Libro</h5> 
@@ -43,23 +43,27 @@
 						<div class="form-row">
 						    <div class="form-group col-md-6">
 								<label>Titolo <span class="text-danger">*</span></label>
-								<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo" required>
+								<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo" value="${requestScope.libroInsert.titolo}"required>
 								<div class="invalid-feedback">
                                    Attenzione! Devi inserire il titolo del libro!
                                  </div>
 							</div>
 							
 							<div class="form-group col-md-6">
-								<label>Genere <span class="text-danger">*</span></label>
-								<input type="text" name="genere" id="genere" class="form-control" placeholder="Inserire il genere" required>
-								<div class="invalid-feedback">
-                                   Attenzione! Devi inserire il genere del libro!
-                                 </div>
-							</div>
+                          <label>Genere</label>
+                           <select id="listaGeneri" name="genere" class="form-control" >	
+		                   		<option value="${NULL}">- Seleziona Genere -</option>
+			               		<c:forEach items="${listaGeneri}" var="genere">
+			                		<c:if test="${genere != 'NULL' }">
+						             	<option value="${genere}" ${genere == genereSelezionato ? 'selected="selected"' : '' }><c:out value="${genere}"/></option>
+						            </c:if>
+				                </c:forEach>
+			                 </select>
+                   </div>
 							
 							<div class="form-group col-md-6">
 								<label>Trama <span class="text-danger">*</span></label>
-								<input type="text" name="trama" id="trama" class="form-control" placeholder="Inserire la trama" required>
+								<input type="text" name="trama" id="trama" class="form-control" placeholder="Inserire la trama" value="${requestScope.libroInsert.trama}"required>
 								<div class="invalid-feedback">
                                    Attenzione! Devi inserire la trama del libro!!
                                  </div>
@@ -69,7 +73,7 @@
 	                             <select id="listaAutori" name="autore_id" class="custom-select browser-default" >	
 				                   <option value="">- Seleziona Autori -</option>
 					               <c:forEach items="${requestScope.listaAutori}" var="autore">
-						             <option value="${autore.id}"><c:out value="${autore.nome}"/>&nbsp;<c:out value="${autore.cognome}"/></option>
+						             <option value="${autore.id}"${autore.id == autoreSelezionato ? 'selected="selected"' : '' } ><c:out value="${autore.nome}"/>&nbsp;<c:out value="${autore.cognome}"/></option>
 					               </c:forEach>
 				                 </select>
 	                          </div>

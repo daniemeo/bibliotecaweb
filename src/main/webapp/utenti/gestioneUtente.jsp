@@ -62,17 +62,26 @@
 					method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label>Nome </label> <input type="text" name="nome">
+							<label>Nome </label> <input class="form-control" type="text" name="nome">
 						</div>
 						<div class="form-group col-md-6">
-							<label>Cognome</label> <input type="text" name="cognome">
+							<label>Cognome</label> <input class="form-control" type="text" name="cognome">
 						</div>
 						<div class="form-group col-md-6">
-							<label>Username </label> <input type="text" name="username">
+							<label>Username </label> <input class="form-control" type="text" name="username">
 						</div>
-						<div class="form-group col-md-6">
-							<label>Stato</label> <input type="text" name="stato">
-						</div>
+							
+							<div class="form-group col-md-6">
+	                          <label>Stato</label>
+	                             <select id="listaStati" name="stato" class="form-control" >	
+				                   <option value="${NULL}">- Seleziona Stato -</option>
+					               <c:forEach items="${listaStati}" var="stato">
+					                <c:if test="${stato != 'NULL' }">
+						             <option value="${stato}"><c:out value="${stato}"/></option>
+						            </c:if>
+					               </c:forEach>
+				                 </select>
+	                          </div>
 
 					</div>
 					<button type="submit" name="submit" value="submit" id="submit"

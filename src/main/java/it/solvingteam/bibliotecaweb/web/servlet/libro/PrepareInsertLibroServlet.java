@@ -1,12 +1,17 @@
 package it.solvingteam.bibliotecaweb.web.servlet.libro;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.solvingteam.bibliotecaweb.model.libro.GenereLibro;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 
 /**
@@ -28,13 +33,15 @@ public class PrepareInsertLibroServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		List<String> listaGeneri = Stream.of(GenereLibro.values()).map(Enum::name).collect(Collectors.toList());
 		try {
 			request.setAttribute("listaAutori", MyServiceFactory.getAutoreServiceInstance().listAll());
+			request.setAttribute("listaGeneri",listaGeneri);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		request.getRequestDispatcher("inserisciLibro.jsp").forward(request, response);
 	}
 

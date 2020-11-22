@@ -3,7 +3,6 @@ package it.solvingteam.bibliotecaweb.model.utente;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -76,6 +75,15 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 		
 		public Utente() {}
 
+		public Utente(String nome, String cognome,String username, StatoUtente stato, Set<Ruolo> ruoli) {
+			
+			this.nome= nome;
+			this.cognome= cognome;
+			this.username = username;
+			this.stato = stato;
+			this.ruoli = ruoli;
+			
+		}
 		public Long getId() {
 			return id;
 		}

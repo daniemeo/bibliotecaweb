@@ -1,12 +1,17 @@
 package it.solvingteam.bibliotecaweb.web.servlet.libro;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.solvingteam.bibliotecaweb.model.libro.GenereLibro;
 import it.solvingteam.bibliotecaweb.model.libro.Libro;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 
@@ -36,6 +41,10 @@ public class PrepareUpdateLibroServlet extends HttpServlet {
 				request.setAttribute("errorMessage", "Attenzione, l'id del libro che hai selezionato non risulta nella nostra lista ");
 				request.getRequestDispatcher("formCercaLibro.jsp");
 			}
+			
+			List<String> listaGeneri = Stream.of(GenereLibro.values()).map(Enum::name).collect(Collectors.toList());
+			
+			request.setAttribute("listaGeneri", listaGeneri);
 			request.setAttribute("listaAutori", MyServiceFactory.getAutoreServiceInstance().listAll());
 			request.setAttribute("libroUpdate", libro);
 		} catch (NumberFormatException e) {

@@ -26,6 +26,9 @@ public class LibroDAOImpl implements LibroDAO{
 
 	@Override
 	public Libro get(Long id) throws Exception {
+		String query= "select l from Libro l join fetch l.autore where l.id = ?1";
+		TypedQuery <Libro> querynew = entityManager.createQuery(query, Libro.class);
+		 querynew.setParameter(1, id).getResultList();
 		return entityManager.find(Libro.class, id);
 	}
 

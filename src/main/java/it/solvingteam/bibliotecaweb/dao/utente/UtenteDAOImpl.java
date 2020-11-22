@@ -29,7 +29,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 		if(id == null) {
 			throw new Exception("Problema valore in input");
 		}
-		return entityManager.find(Utente.class, id);
+		TypedQuery<Utente> query =  entityManager.createQuery("from Utente u join fetch u.ruoli where u.id = ?1",Utente.class);
+		query.setParameter(1, id);
+		return query.getSingleResult();
+		
 	}
 
 	@Override
@@ -57,14 +60,14 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return result;
 	}
 	
+//
+//   @Override
+//   public boolean delete(Utente o) throws Exception {
+//	// TODO Auto-generated method stub
+//	return false;
+//}
 
-   @Override
-   public boolean delete(Utente o) throws Exception {
-	// TODO Auto-generated method stub
-	return false;
-}
-/*
-	@Override //non è necessario!! basta disattivarlo
+	@Override 
 	public boolean delete(Utente utenteInstance) throws Exception {
 		boolean result= false;
 		if (utenteInstance == null) {
@@ -75,7 +78,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 		}
 		return result;
 	}
-    */
+    
 	@Override
 	public Utente findByUsernamePassword(String username, String password) throws Exception {
 		if (username == null ||password  == null) {

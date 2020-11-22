@@ -48,6 +48,7 @@ public class Libro {
 		this.trama = trama;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}

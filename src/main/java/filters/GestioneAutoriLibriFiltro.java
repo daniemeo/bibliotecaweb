@@ -16,17 +16,17 @@ import it.solvingteam.bibliotecaweb.model.ruolo.Ruolo;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 
 /**
- * Servlet Filter implementation class GestioneLibriFiltro
+ * Servlet Filter implementation class GestioneAutoriFiltro
  */
-@WebFilter("/libri/*")
-public class GestioneLibriFiltro implements Filter {
+@WebFilter(urlPatterns = {"/autori/*", "/libri/*"})
+public class GestioneAutoriLibriFiltro implements Filter {
 
 	private String context;
 
 	/**
 	 * Default constructor.
 	 */
-	public GestioneLibriFiltro() {
+	public GestioneAutoriLibriFiltro() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,26 +45,33 @@ public class GestioneLibriFiltro implements Filter {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String percorso = httpServletRequest.getRequestURI();
-		Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
-
-		if ( percorso.contains("PrepareCercaLibroServlet")
-				|| percorso.contains("VisualizzaLibroServlet")|| percorso.contains("ExecuteCercaLibroServlet")) {
-			chain.doFilter(request, response);
-			
+		if (httpServletRequest.getSession() == null || httpServletRequest.getSession().getAttribute("utente") == null) {
+			// request.setAttribute("errorMessage", "Attenzione sono presenti errori di
+			// validazione");
+			httpServletResponse.sendRedirect(context);
+			// return;
 		} else {
-			
-	           
-			for (Ruolo ruolo : utente.getRuoli()) {
-				if (CodiceRuolo.GUEST_ROLE == ruolo.getCodice()) {
-					httpServletResponse.sendRedirect(context);
-				} if (CodiceRuolo.ADMIN_ROLE == ruolo.getCodice() || CodiceRuolo.CLASSIC_ROLE == ruolo.getCodice()) {
+
+			Utente utente = (Utente) httpServletRequest.getSession().getAttribute("utente");
+
+			if (percorso.contains("PrepareCercaAutoreServlet") || percorso.contains("VisualizzaAutoreServlet")
+					|| percorso.contains("ExecuteCercaAutoreServlet")) {
+				chain.doFilter(request, response);
+
+			} else {
+				boolean inRole = false;
+				for (Ruolo ruolo : utente.getRuoli()) {
+					if (CodiceRuolo.ADMIN_ROLE == ruolo.getCodice() || CodiceRuolo.CLASSIC_ROLE == ruolo.getCodice()) {
+						inRole = true;
+
+					}
+				}
+				if (inRole) {
 					chain.doFilter(request, response);
 				}
-				
+
 			}
-			
-		} 
-		
+		}
 
 	}
 

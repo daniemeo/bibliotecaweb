@@ -22,13 +22,14 @@
 			    <span aria-hidden="true">&times;</span>
 			  </button>
 		</div>
-		
+		<c:forEach items= "${requestScope.errorMessage}" var= "errore">
 		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
-		  ${errorMessage}
+		  ${errore}
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
+		</c:forEach>
 		
 		<div class='card'>
 		    <div class='card-header'>
@@ -43,7 +44,7 @@
 						<div class="form-row">
 						    <div class="form-group col-md-6">
 								<label>Nome <span class="text-danger">*</span></label>
-								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" required>
+								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${requestScope.utenteInsert.nome}"required>
 								<div class="invalid-feedback">
                                    Attenzione! Devi inserire il nome dell'utente!
                                  </div>
@@ -51,7 +52,7 @@
 							
 							<div class="form-group col-md-6">
 								<label>Cognome <span class="text-danger">*</span></label>
-								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" required>
+								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${requestScope.utenteInsert.cognome}"required>
 								<div class="invalid-feedback">
                                    Attenzione! Devi inserire il cognome dell'utente!!
                                  </div>
@@ -59,14 +60,14 @@
 							
 							<div class="form-group col-md-6">
 								<label>Username<span class="text-danger">*</span></label>
-								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username" required>
+								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username" value="${requestScope.utenteInsert.username}"required>
 								<div class="invalid-feedback">
                                    Attenzione! 
                                  </div>
 							</div>
 							<div class="form-group col-md-6">
 								<label>Password<span class="text-danger">*</span></label>
-								<input type="text" name="password" id="password" class="form-control" placeholder="Inserire Password" required>
+								<input type="text" name="password" id="password" class="form-control" placeholder="Inserire Password" value="${requestScope.utenteInsert.password}"required>
 								<div class="invalid-feedback">
                                    Attenzione! 
                                  </div>
@@ -75,21 +76,17 @@
 							
 							 <div class="custom-control custom-checkbox">
 								   
-								   <c:forEach items="${requestScope.listaRuoli}" var="ruolo">
-							    		<input type="checkbox" class="" id="ruolo${ruolo.id}" name="ruoliSelezionati" value="${ruolo.id}"/>
+								    <c:forEach items="${requestScope.listaRuoli}" var="ruolo" >
+							    		<input type="checkbox" class="" id="ruolo${ruolo.id}" name="ruoliSelezionati" value="${ruolo.id}"
+								    		<c:forEach items="${utenteInsert.ruoli}" var="ruoloUtente" >
+								    		 	${ruolo.id == ruoloUtente.id ? 'checked="checked"' : '' }
+								    		</c:forEach>
+							    		/>
 								    	${ruolo.codice}
 								    	<br>
 								   </c:forEach>
 							 </div>
-							
 						</div>
-						
-						
-							
-					
-						
-                   
-						
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 					</form>
 					

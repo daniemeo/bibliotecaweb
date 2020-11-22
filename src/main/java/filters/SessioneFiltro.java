@@ -46,11 +46,12 @@ public class SessioneFiltro implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String percorso = httpServletRequest.getRequestURI();
 		
+		
 		if(percorso.equals("/bibliotecaweb")|| percorso.equals("/bibliotecaweb/LoginServlet")|| percorso.equals("/bibliotecaweb/LogoutServlet")) {
 			chain.doFilter(request, response);
 		}
 		else {
-			if(httpServletRequest.getSession().getAttribute("utente") == null) {
+			if(httpServletRequest.getSession().getAttribute("utente") == null || httpServletRequest.getSession() == null ) {
 				httpServletResponse.sendRedirect(context);
 			}
 			else { 

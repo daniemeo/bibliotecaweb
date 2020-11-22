@@ -53,6 +53,7 @@ public class ExecuteCercaUtenteServlet extends HttpServlet {
 		
 		try {
 			request.setAttribute("listaUtenti", MyServiceFactory.getUtenteServiceInstance().findByUtente(utente));
+			//request.setAttribute("listaUtentiAttribute", MyServiceFactory.getUtenteServiceInstance().setAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -57,11 +57,13 @@
 			</button>
 		</div>
 		<div class='card'>
-			<div class='card-header'>Risultati ricerca libro</div>
+			<div class='card-header'>Risultati ricerca utente</div>
 			<div class='card-body'>
-				<a class="btn btn-primary "
-					href="${pageContext.request.contextPath}/utenti/PrepareInsertUtenteServlet">Add
-					New</a>
+		<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+			<c:if test="${ruoli.codice == 'ADMIN_ROLE'}">
+				<a class="btn btn-primary " href="${pageContext.request.contextPath}/utenti/PrepareInsertUtenteServlet">Add New</a>
+			  </c:if> 
+		</c:forEach>	
 			</div>
 			<div class='table-responsive'>
 				<table class='table table-striped '>
@@ -73,6 +75,7 @@
 							<th>Username</th>
 							<th>Stato</th>
 							<th>Ruolo</th>
+							<th>Azioni</th>
 
 						</tr>
 					</thead>
@@ -86,23 +89,36 @@
 								<td><c:out value="${utente.stato}"></c:out></td>
 								<td>
 									<c:forEach items="${utente.ruoli}" var="ruolo">
-										<c:out value="${ruolo.codice}"/>,
+										<c:out value="${ruolo.codice}"/><br/>
 									</c:forEach>
 								</td>
-								<td><a class="btn  btn-sm btn-outline-secondary" href="VisualizzaUtenteServlet?idDaInviareComeParametro=${utente.id}">
-										Visualizza</a> 
+								<td>
+									<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+									<c:if test="${ruoli.codice == 'ADMIN_ROLE'}">
+										<a class="btn  btn-sm btn-outline-secondary" href="VisualizzaUtenteServlet?idDaInviareComeParametro=${utente.id}">Visualizza</a>
+									</c:if> 
+								</c:forEach>
+								<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+									<c:if test="${ruoli.codice == 'ADMIN_ROLE' }">
 										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateUtenteServlet?idDaInviareExecuteUpdate=${utente.id}">Edit</a>
-									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteServlet?idDaInviareComeParametro=${utente.id}">Delete</a>
-
+									</c:if> 
+								</c:forEach>
+								<c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+									<c:if test="${ruoli.codice == 'ADMIN_ROLE' }">
+										<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteServlet?idDaInviareComeParametro=${utente.id}">Delete</a>
+								    </c:if> 
+								</c:forEach>
 								</td>
-
-
-
-
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<div class='card-footer'>
+					<a href="gestioneUtente.jsp"
+						class='btn btn-outline-secondary' style='width: 80px'> <i
+						class='fa fa-chevron-left'></i> Back
+					</a>
+				</div>
 			</div>
 		</div>
 

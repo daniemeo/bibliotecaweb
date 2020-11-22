@@ -30,7 +30,11 @@
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 	      <p><a class="btn btn-primary btn-lg" href="libri/PrepareCercaLibroServlet" role="button"> Cerca Libri &raquo;</a></p>
 	       <p><a class="btn btn-primary btn-lg" href="autori/PrepareCercaAutoreServlet" role="button"> Cerca Autori &raquo;</a></p>
+	       <c:forEach items="${sessionScope.utente.ruoli}" var="ruoli">
+				<c:if test="${ruoli.codice == 'ADMIN_ROLE'}">
 	        <p><a class="btn btn-primary btn-lg" href="utenti/PrepareCercaUtenteServlet" role="button"> Gestione Utenti &raquo;</a></p>
+	        	</c:if> 
+		    </c:forEach>
 	    </div>
 	  </div>
 	  

@@ -40,7 +40,7 @@
 		    	
 		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Autore</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.autore.id}"></c:out></dd>
+				  <dd class="col-sm-9"><c:out value="${requestScope.libroPerListaLibro.autore.nome}"/><br><c:out value="${requestScope.libroPerListaLibro.autore.cognome}"/></dd>
 		    	</dl>
 		    
 		    	

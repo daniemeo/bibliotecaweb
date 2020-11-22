@@ -1,13 +1,12 @@
 package it.solvingteam.bibliotecaweb.web.servlet.libro;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.cj.MysqlType;
 
 import it.solvingteam.bibliotecaweb.model.autore.Autore;
 import it.solvingteam.bibliotecaweb.model.libro.GenereLibro;
@@ -63,12 +62,7 @@ public class ExecuteCercaLibroServlet extends HttpServlet {
 			autore.setId(Long.parseLong(autoreInputParam));
 		}
 		Libro libro = new Libro(titoloInputParam, genere, tramaInputParam, autore);
-		try {
-			request.setAttribute("listaAutori",MyServiceFactory.getAutoreServiceInstance().listAll());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 		request.setAttribute("listaLibri", MyServiceFactory.getLibroServiceInstance().findByLibro(libro));
 

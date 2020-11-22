@@ -1,13 +1,13 @@
 package it.solvingteam.bibliotecaweb.web.servlet.utente;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.solvingteam.bibliotecaweb.model.libro.Libro;
 import it.solvingteam.bibliotecaweb.model.utente.Utente;
 import it.solvingteam.bibliotecaweb.service.MyServiceFactory;
 
@@ -46,10 +46,11 @@ public class ExecuteDeleteUtenteServlet extends HttpServlet {
 				request.getRequestDispatcher("utenti/gestioneUtente.jsp").forward(request, response);
 				return;
 			}
-			
+			Utente utente;
 			try {
-				 
-				MyServiceFactory.getUtenteServiceInstance().rimuovi((Long.parseLong(idUtenteInput)));
+				 utente = MyServiceFactory.getUtenteServiceInstance().get(Long.parseLong(idUtenteInput));
+				MyServiceFactory.getUtenteServiceInstance().rimuovi(utente);
+				//MyServiceFactory.getUtenteServiceInstance().rimuovi.get(Long.parseLong(idUtenteInput))
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
