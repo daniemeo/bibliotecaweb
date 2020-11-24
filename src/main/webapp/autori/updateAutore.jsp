@@ -9,6 +9,35 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+    	$("form").submit(function( event ) {
+			$("#errorNome").hide();
+			$("#errorCognome").hide();
+			$("#errorData").hide();
+			var controlli = true;
+			if(!$("#nome")[0].value) {
+				$("#errorNome").show();
+				controlli= false;
+			}
+			if(!$("#cognome")[0].value){
+				$("#errorCognome").show();
+				controlli= false;
+			}
+			if(!$("#dataDiNascita")[0].value){
+				$("#errorData").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 
 </head>
 <body>
@@ -52,16 +81,20 @@
 
 
 						<div class="form-group col-md-6">
-							<label>Nome <span class="text-danger"></span></label> <input
-								type="text" name="nome" id="nome" class="form-control"
-								value="${requestScope.autoreUpdate.nome}">
-						</div>
+							<label>Nome <span class="text-danger"></span></label>
+							 <input type="text" name="nome" id="nome" class="form-control" value="${requestScope.autoreUpdate.nome}">
+				              <div class="invalid-feedback" id= "errorNome">
+                                   Attenzione! Devi inserire il nome dell'autore!!
+                              </div>
+				       </div>
 
 
 						<div class="form-group col-md-6">
-							<label>Cognome <span class="text-danger"></span></label> <input
-								type="text" name="cognome" id="cognome" class="form-control"
-								value="${requestScope.autoreUpdate.cognome}">
+							<label>Cognome <span class="text-danger"></span></label>
+							 <input type="text" name="cognome" id="cognome" class="form-control" value="${requestScope.autoreUpdate.cognome}">
+							 <div class="invalid-feedback" id= "errorCognome">
+                                   Attenzione! Devi inserire il cognome dell'autore!!
+                              </div>
 						</div>
 					</div>
 
@@ -69,9 +102,10 @@
 						<div class="form-group col-md-3">
 							<label>Data di nascita<span
 								class="text-danger"></span></label> 
-								<input type="date" 
-								class="form-control" name="dataDiNascita" id="dataDiNascita"
-								value="${requestScope.autoreUpdate.dataNascita}">
+								<input type="date" class="form-control" name="dataDiNascita" id="dataDiNascita" value="${requestScope.autoreUpdate.dataNascita}">
+								<div class="invalid-feedback" id= "errorData">
+                                   Attenzione! Devi inserire la data di nascita dell'autore!!
+                              </div>
 						</div>
 
 					</div>

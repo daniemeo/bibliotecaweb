@@ -77,6 +77,7 @@
 							<th>Trama</th>
 							<th>Genere</th>
 							<th>Autore</th>
+							<th>Azioni</th>
 
 						</tr>
 					</thead>

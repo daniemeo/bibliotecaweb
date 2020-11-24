@@ -73,6 +73,7 @@
 							<th>Nome</th>
 							<th>Cognome</th>
 							<th>Data di Nascita</th>
+							<th>Azioni</th>
 
 
 						</tr>

@@ -25,6 +25,9 @@
           <a class="dropdown-item" href="${pageContext.request.contextPath}/home.jsp">Home</a>
           <a class="dropdown-item" href="ListArticoliServlet">Risultati</a>
         </div>
+          <li class="nav-item active">
+      <a class= "nav-link" href="#"> <c:out value="${sessionScope.utente.nome}"/>  <c:out value="${sessionScope.utente.cognome}" default="null"/>   </a>
+      </li>
       </li>
        <li class="nav-item active">
         <a class="nav-link" href="LogoutServlet"> Logout <span class="sr-only">(current)</span></a>
@@ -35,9 +38,6 @@
    
   
    
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    
   </div>
 </nav>

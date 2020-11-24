@@ -9,7 +9,49 @@
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+     <script type="text/javascript">
     
+    $(document).ready(function() {
+    	$("form").submit(function( event ) {
+    		
+			$("#errorNome").hide();
+			$("#errorCognome").hide();
+			$("#errorUsername").hide();
+			$("#errorStato").hide();
+			$("#errorRuoli").hide();
+			
+			var controlli = true;
+			if(!$("#nome")[0].value) {
+				$("#errorNome").show();
+				controlli= false;
+			}
+			if(!$("#cognome")[0].value){
+				$("#errorCognome").show();
+				controlli= false;
+			}
+			if(!$("#username")[0].value){
+				$("#errorUsername").show();
+				controlli= false;
+			}
+			if(!$("#listaStati")[0].value){
+				$("#errorStato").show();
+				controlli= false;
+			}
+			
+			if(!$("input[type='checkbox']").is(":checked")){
+				$("#errorRuoli").show();
+				controlli= false;
+				
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -45,19 +87,25 @@
 						    <div class="form-group col-md-6">
 								<label>Nome <span class="text-danger"></span></label>
 								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${utente.nome}"required>
-								
+								<div class="invalid-feedback" id= "errorNome">
+                                   Attenzione! Devi inserire il nome dell'utente!
+                                 </div>
 							</div>
 							
 							<div class="form-group col-md-6">
 								<label>Cognome </label>
 								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome"  value="${utente.cognome}">
-								
+								<div class="invalid-feedback" id= "errorCognome">
+                                   Attenzione! Devi inserire il cognome dell'utente!
+                                 </div>
 							</div>
 							
 							<div class="form-group col-md-6">
 								<label>Username</label>
 								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username"  value="${utente.username}">
-								
+								<div class="invalid-feedback" id= "errorUsername">
+                                   Attenzione! Devi inserire lo username dell'utente!
+                                 </div>
 							</div>
 							
 							<div class="form-group col-md-6">
@@ -70,6 +118,9 @@
 						            </c:if>
 					               </c:forEach>
 				                 </select>
+				                 <div class="invalid-feedback" id= "errorStato">
+                                   Attenzione! Devi inserire lo stato dell'utente!
+                                 </div>
 	                          </div>
 	                        
 							
@@ -87,6 +138,9 @@
 								    	${ruolo.codice}
 								    	<br>
 								   </c:forEach>
+								   <div class="invalid-feedback" id= "errorRuoli">
+                                   Attenzione devi inserire i ruoli! 
+                                 </div>
 							 </div>
 							</div>
 						</div>

@@ -9,7 +9,48 @@
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+     <script type="text/javascript">
     
+    $(document).ready(function() {
+    	$("form").submit(function( event ) {
+    		
+			$("#errorNome").hide();
+			$("#errorCognome").hide();
+			$("#errorUsername").hide();
+			$("#errorPassword").hide();
+			$("#errorRuoli").hide();
+			var controlli = true;
+			if(!$("#nome")[0].value) {
+				$("#errorNome").show();
+				controlli= false;
+			}
+			if(!$("#cognome")[0].value){
+				$("#errorCognome").show();
+				controlli= false;
+			}
+			if(!$("#username")[0].value){
+				$("#errorUsername").show();
+				controlli= false;
+			}
+			if(!$("#password")[0].value){
+				$("#errorPassword").show();
+				controlli= false;
+			}
+			
+			if(!$("input[type='checkbox']").is(":checked")){
+				$("#errorRuoli").show();
+				controlli= false;
+				
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -45,7 +86,7 @@
 						    <div class="form-group col-md-6">
 								<label>Nome <span class="text-danger">*</span></label>
 								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${requestScope.utenteInsert.nome}"required>
-								<div class="invalid-feedback">
+								<div class="invalid-feedback" id= "errorNome">
                                    Attenzione! Devi inserire il nome dell'utente!
                                  </div>
 							</div>
@@ -53,7 +94,7 @@
 							<div class="form-group col-md-6">
 								<label>Cognome <span class="text-danger">*</span></label>
 								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${requestScope.utenteInsert.cognome}"required>
-								<div class="invalid-feedback">
+								<div class="invalid-feedback" id= "errorCognome">
                                    Attenzione! Devi inserire il cognome dell'utente!!
                                  </div>
 							</div>
@@ -61,15 +102,15 @@
 							<div class="form-group col-md-6">
 								<label>Username<span class="text-danger">*</span></label>
 								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire Username" value="${requestScope.utenteInsert.username}"required>
-								<div class="invalid-feedback">
-                                   Attenzione! 
+								<div class="invalid-feedback" id= "errorUsername">
+                                   Attenzione devi inserire lo username! 
                                  </div>
 							</div>
 							<div class="form-group col-md-6">
 								<label>Password<span class="text-danger">*</span></label>
 								<input type="text" name="password" id="password" class="form-control" placeholder="Inserire Password" value="${requestScope.utenteInsert.password}"required>
-								<div class="invalid-feedback">
-                                   Attenzione! 
+								<div class="invalid-feedback" id= "errorPassword">
+                                   Attenzione devi inserire la password! 
                                  </div>
 							</div>
 							
@@ -81,10 +122,13 @@
 								    		<c:forEach items="${utenteInsert.ruoli}" var="ruoloUtente" >
 								    		 	${ruolo.id == ruoloUtente.id ? 'checked="checked"' : '' }
 								    		</c:forEach>
-							    		/>
+								    	/>
 								    	${ruolo.codice}
 								    	<br>
 								   </c:forEach>
+								   <div class="invalid-feedback" id= "errorRuoli">
+                                   Attenzione devi inserire i ruoli! 
+                                 </div>
 							 </div>
 						</div>
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>

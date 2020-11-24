@@ -1,4 +1,6 @@
 <!doctype html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <html lang="it">
 	<head>
 	  <!-- Required meta tags -->
@@ -7,7 +9,7 @@
 	
 	  <!-- Bootstrap CSS -->
 	  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" >
-	
+	   
 	  <title>Accedi</title>
 	  
 	  <!-- Favicons -->
@@ -17,9 +19,35 @@
 	<link rel="manifest" href="./assets/img/favicons/manifest.json">
 	<link rel="mask-icon" href="./assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
 	<link rel="icon" href="./assets/img/favicons/favicon.ico">
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
 	<meta name="msapplication-config" content="./assets/img/favicons/browserconfig.xml">
 	<meta name="theme-color" content="#563d7c">
 	
+	<script type="text/javascript">
+    
+        $(document).ready(function() {
+    	$("form").submit(function( event ) {
+    		
+			$("#errorUsername").hide();
+			$("#errorPassword").hide();
+			
+			var controlli = true;
+			if(!$("#username")[0].value) {
+				$("#errorUsername").show();
+				controlli= false;
+			}
+			if(!$("#password")[0].value){
+				$("#errorPassword").show();
+				controlli= false;
+			}
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 	
 	   <style>
 	    .bd-placeholder-img {
@@ -43,7 +71,7 @@
 	</head>
 	<body class="text-center">
 		
-	   	<form class="form-signin" action="LoginServlet" method="post">
+	   	<form class="form-signin" action="LoginServlet" method="post" novalidate="novalidate">
 	   	
 		   	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 			  ${errorMessage}
@@ -54,14 +82,20 @@
 		  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		  <label for="inputUsername" class="sr-only">Username</label>
 		  <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+		   <div class="invalid-feedback" id= "errorUsername">
+           Attenzione! Devi inserire username!
+            </div>
 		  <label for="password" class="sr-only">Password</label>
 		  <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
+		  <div class="invalid-feedback" id= "errorPassword">
+           Attenzione! Devi inserire la password!
+          </div>
 		  <div class="checkbox mb-3">
 		    <label>
 		      <input type="checkbox" value="remember-me"> Remember me
 		    </label>
 		  </div>
-		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		  <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Sign in</button>
 		  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 		</form>
 	</body>

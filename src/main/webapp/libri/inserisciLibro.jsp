@@ -9,7 +9,41 @@
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+     <script type="text/javascript">
     
+    $(document).ready(function() {
+    	$("form").submit(function( event ) {
+    		
+			$("#errorTitolo").hide();
+			$("#errorGenere").hide();
+			$("#errorTrama").hide();
+			$("#errorAutore").hide();
+			var controlli = true;
+			if(!$("#titolo")[0].value) {
+				$("#errorTitolo").show();
+				controlli= false;
+			}
+			if(!$("#listaGeneri")[0].value){
+				$("#errorGenere").show();
+				controlli= false;
+			}
+			if(!$("#trama")[0].value){
+				$("#errorTrama").show();
+				controlli= false;
+			}
+			if(!$("#listaAutori")[0].value){
+				$("#errorAutore").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -44,7 +78,7 @@
 						    <div class="form-group col-md-6">
 								<label>Titolo <span class="text-danger">*</span></label>
 								<input type="text" name="titolo" id="titolo" class="form-control" placeholder="Inserire il titolo" value="${requestScope.libroInsert.titolo}"required>
-								<div class="invalid-feedback">
+								<div class="invalid-feedback" id= "errorTitolo">
                                    Attenzione! Devi inserire il titolo del libro!
                                  </div>
 							</div>
@@ -56,15 +90,19 @@
 			               		<c:forEach items="${listaGeneri}" var="genere">
 			                		<c:if test="${genere != 'NULL' }">
 						             	<option value="${genere}" ${genere == genereSelezionato ? 'selected="selected"' : '' }><c:out value="${genere}"/></option>
+						             	
 						            </c:if>
 				                </c:forEach>
 			                 </select>
+			                 <div class="invalid-feedback" id= "errorGenere">
+                                 Attenzione! Devi inserire il genere del libro!
+                             </div>
                    </div>
 							
 							<div class="form-group col-md-6">
 								<label>Trama <span class="text-danger">*</span></label>
 								<input type="text" name="trama" id="trama" class="form-control" placeholder="Inserire la trama" value="${requestScope.libroInsert.trama}"required>
-								<div class="invalid-feedback">
+								<div class="invalid-feedback"id= "errorTrama">
                                    Attenzione! Devi inserire la trama del libro!!
                                  </div>
 							</div>
@@ -74,8 +112,12 @@
 				                   <option value="">- Seleziona Autori -</option>
 					               <c:forEach items="${requestScope.listaAutori}" var="autore">
 						             <option value="${autore.id}"${autore.id == autoreSelezionato ? 'selected="selected"' : '' } ><c:out value="${autore.nome}"/>&nbsp;<c:out value="${autore.cognome}"/></option>
+						             	
 					               </c:forEach>
 				                 </select>
+				                 <div class="invalid-feedback" id= "errorAutore">
+                               		 Attenzione! Devi inserire l'autore del libro!
+                           	    </div>
 	                          </div>
 						</div>
 						

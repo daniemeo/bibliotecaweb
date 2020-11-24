@@ -6,12 +6,12 @@
 <head>
     <jsp:include page="/header.jsp" />
      <title>controllo cancellazione</title>
-       <link href="${pageContext.request.contextPath}./assets/css/global.css" rel="stylesheet">
+       <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
 </head>
 <body>
   <jsp:include page="/navbar.jsp" />
   <main role="main" class="container">
-   <div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+  	    <div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
 			 	Operazione fallita!
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			    <span aria-hidden="true">&times;</span>
@@ -25,20 +25,16 @@
 		  </button>
 		</div>
     <div class='card'>
-      <div class='card-header'>
-		        Controllo delete
-   	  </div>
-     		    <div class='card-body'>
-		    		<dl class="row">
-                      
-			    	</dl>
-				</div>	
+      <div class='card-header'> Controllo delete </div>
+   	  <div class='card-body'>
+	     Vuoi eliminare l'utente?
+	   </div>
+     		    
 	<form method="post" action="${pageContext.request.contextPath}/utenti/ExecuteDeleteUtenteServlet" novalidate="novalidate">
 				<input type="hidden" name="idDaInviareComeParametro" id="idDaInviareComeParametro" value= "${requestScope.delete.id}">
 					
   				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-  				<a href="${pageContext.request.contextPath}/utenti/PrepareCercaUtenteServlet"
-		         class='btn btn-outline-secondary' style='width:80px'>
+  				<a href="${pageContext.request.contextPath}/utenti/PrepareCercaUtenteServlet" class='btn btn-outline-secondary' style='width:80px'>
 		            <i class='fa fa-chevron-left'></i> Back
 		        </a>
 	</form>	

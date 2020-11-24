@@ -53,7 +53,9 @@ public class ExecuteDeleteAutoreServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/autori/PrepareCercaAutoreServlet");
+		request.setAttribute("successMessage", "Operazione effettuata con successo");
+		request.getRequestDispatcher("resultsCercaPerAutore.jsp").forward(request, response);
+		
   		
 	}
 

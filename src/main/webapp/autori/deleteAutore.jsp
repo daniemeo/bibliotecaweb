@@ -28,11 +28,9 @@
       <div class='card-header'>
 		        Controllo delete
    	  </div>
-     		    <div class='card-body'>
-		    		<dl class="row">
-                         
-			    	</dl>
-				</div>	
+   	  <div class='card-body'>
+	     Vuoi eliminare l'autore?
+	   </div>
 	<form method="post" action="${pageContext.request.contextPath}/autori/ExecuteDeleteAutoreServlet" novalidate="novalidate">
 				<input type="hidden" name="idDaInviareComeParametro" id="idDaInviareComeParametro" value= "${requestScope.delete.id}">
 					

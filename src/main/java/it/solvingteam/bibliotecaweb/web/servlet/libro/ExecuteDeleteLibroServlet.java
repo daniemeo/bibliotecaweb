@@ -56,7 +56,9 @@ public class ExecuteDeleteLibroServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath()+"/libri/PrepareCercaLibroServlet");
+		request.setAttribute("successMessage", "Operazione effettuata con successo");
+		request.getRequestDispatcher("formCercaLibro.jsp").forward(request, response);
+		
 		
 	}
 
